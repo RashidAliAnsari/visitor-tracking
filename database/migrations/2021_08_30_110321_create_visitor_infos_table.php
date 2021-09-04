@@ -15,6 +15,7 @@ class CreateVisitorInfosTable extends Migration
     {
         Schema::create('visitor_infos', function (Blueprint $table) {
             $table->id();
+            $table->integer('profile_id');
             $table->string('ip')->nullable();
             $table->string('browser')->nullable();
             $table->string('device')->nullable();
