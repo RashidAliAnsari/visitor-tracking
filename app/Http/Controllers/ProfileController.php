@@ -84,23 +84,45 @@ class ProfileController extends Controller
         //     return view('history', compact('visitors'));
         // }
         
-        public function dashboard($id){
-            // $byConutry = VisitorInfo::where('profile_id', $id)->select('country')->groupBy('country')->count();
+        public function dashboard(Request $request, $id){
+            $byConutryValue = 1;
+            $byDeviceValue = 1;
+            $trafficChannelValue = 1;
+            $marketingOverviewValue = 1;
+            // $marketingPerformanceValue = 1;
+            // $reachSummaryValue = 1;
+            $sourcesValue = 1;
+            if ($request->has('type')) {
+                if ($request->has('type') == "byConutryDropdown") {
+                    $byConutryValue = $request->value;
+                }
+                if ($request->has('type') == "byDeviceDropdown") {
+                    $byDeviceValue = $request->value;
+                }
+                if ($request->has('type') == "trafficChannelDropdown") {
+                    $trafficChannelValue = $request->value;
+                }
+                if ($request->has('type') == "marketingOverviewDropdown") {
+                    $marketingOverviewValue = $request->value;
+                }
+                if ($request->has('type') == "sourceDropdown") {
+                    $sourcesValue = $request->value;
+                }
+            }
             
-            
-            $byConutry = $this->getByConutry(1, $id);
+            $byConutry = $this->getByConutry($byConutryValue, $id);
 
-            $byDevice = $this->getByDevice(1, $id);
+            $byDevice = $this->getByDevice($byDeviceValue, $id);
             
-            $trafficChannel = $this->getTrafficChannel(1, $id);
+            $trafficChannel = $this->getTrafficChannel($trafficChannelValue, $id);
             
-            $marketingOverview = $this->getMarketingOverview(1, $id);
+            $marketingOverview = $this->getMarketingOverview($marketingOverviewValue, $id);
 
             $marketingPerformance = $this->getMarketingPerformance(1, $id);
 
             $reachSummary = $this->getreachSummary(1, $id);
 
-            $sources = $this->getSource(1, $id);
+            $sources = $this->getSource($sourcesValue, $id);
 
 
             // dd($source);

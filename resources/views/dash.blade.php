@@ -14,6 +14,17 @@
     <input type="hidden" name="asset" id="asset" value="{{asset('')}}">
     <input type="hidden" name="profileId" id="profileId" value="{{$id}}">
     <input type="hidden" name="currentType" id="currentType" value="">
+
+    @php
+        $type = 'none';
+        $value = 0;
+        if (isset($_GET["type"])) {
+            $type = $_GET["type"];
+            $value = $_GET["value"];
+        }
+        // dd($type);
+    @endphp
+
     <div class="nk-app-root">
         <!-- main @s -->
         <div class="nk-main ">
@@ -71,12 +82,24 @@
                                                         </div>
                                                         <div class="card-tools">
                                                             <div class="drodown">
-                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">1 Day</a>
+                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">
+                                                                
+                                                                    @if ( ($type !== 'none' && $type == 'marketingOverviewDropdown' && $value == "1") || $type == 'none' || ($type !== 'none' && $type !== 'marketingOverviewDropdown') )
+                                                                        1 Day
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'marketingOverviewDropdown' && $value == "7")
+                                                                        7 Days
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'marketingOverviewDropdown' && $value == "30")
+                                                                        30 Days
+                                                                    @endif
+                                                                    
+                                                                </a>
                                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
                                                                     <ul class="link-list-opt no-bdr">
-                                                                        <li class="marketingOverviewDropdown" data-value="1"><a href="javascript:void(0);"><span>1 Day</span></a></li>
-                                                                        <li class="marketingOverviewDropdown" data-value="7"><a href="javascript:void(0);"><span>7 Days</span></a></li>
-                                                                        <li class="marketingOverviewDropdown" data-value="30"><a href="javascript:void(0);"><span>30 Days</span></a></li>
+                                                                        <li class="marketingOverviewDropdown" data-value="1"><a href="{{url('profile/dashboard/'. $id . '/?type=marketingOverviewDropdown&value=1')}}"><span>1 Day</span></a></li>
+                                                                        <li class="marketingOverviewDropdown" data-value="7"><a href="{{url('profile/dashboard/'. $id . '/?type=marketingOverviewDropdown&value=7')}}"><span>7 Days</span></a></li>
+                                                                        <li class="marketingOverviewDropdown" data-value="30"><a href="{{url('profile/dashboard/'. $id . '/?type=marketingOverviewDropdown&value=30')}}"><span>30 Days</span></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -151,8 +174,8 @@
                                                             <canvas class="analytics-au-chart" id="analyticAuData"></canvas>
                                                         </div>
                                                         <div class="chart-label-group">
-                                                            <div class="chart-label">01 Jun, 2021</div>
-                                                            <div class="chart-label">30 Jun, 2021</div>
+                                                            <div class="chart-label">{{date('d M, Y')}}</div>
+                                                            {{-- <div class="chart-label">30 Jun, 2021</div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -241,12 +264,24 @@
                                                         </div>
                                                         <div class="card-tools">
                                                             <div class="drodown">
-                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">1 Day</a>
+                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">
+                                                                    
+                                                                    @if ( ($type !== 'none' && $type == 'trafficChannelDropdown' && $value == "1") || $type == 'none' || ($type !== 'none' && $type !== 'trafficChannelDropdown') )
+                                                                        1 Day
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'trafficChannelDropdown' && $value == "7")
+                                                                        7 Days
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'trafficChannelDropdown' && $value == "30")
+                                                                        30 Days
+                                                                    @endif
+
+                                                                </a>
                                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
                                                                     <ul class="link-list-opt no-bdr">
-                                                                        <li class="trafficChannelDropdown" data-value="1"><a href="javascript:void(0);"><span>1 Day</span></a></li>
-                                                                        <li class="trafficChannelDropdown" data-value="7"><a href="javascript:void(0);"><span>7 Days</span></a></li>
-                                                                        <li class="trafficChannelDropdown" data-value="30"><a href="javascript:void(0);"><span>30 Days</span></a></li>
+                                                                        <li class="trafficChannelDropdown" data-value="1"><a href="{{url('profile/dashboard/'. $id . '/?type=trafficChannelDropdown&value=1')}}"><span>1 Day</span></a></li>
+                                                                        <li class="trafficChannelDropdown" data-value="7"><a href="{{url('profile/dashboard/'. $id . '/?type=trafficChannelDropdown&value=7')}}"><span>7 Days</span></a></li>
+                                                                        <li class="trafficChannelDropdown" data-value="30"><a href="{{url('profile/dashboard/'. $id . '/?type=trafficChannelDropdown&value=30')}}"><span>30 Days</span></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -350,12 +385,24 @@
                                                         </div>
                                                         <div class="card-tools">
                                                             <div class="drodown">
-                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">1 Day</a>
+                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">
+
+                                                                    @if ( ($type !== 'none' && $type == 'byDeviceDropdown' && $value == "1") || $type == 'none' || ($type !== 'none' && $type !== 'byDeviceDropdown') )
+                                                                        1 Day
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'byDeviceDropdown' && $value == "7")
+                                                                        7 Days
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'byDeviceDropdown' && $value == "30")
+                                                                        30 Days
+                                                                    @endif
+
+                                                                </a>
                                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
                                                                     <ul class="link-list-opt no-bdr">
-                                                                        <li class="byDeviceDropdown" data-value="1"><a href="javascript:void(0);"><span>1 Day</span></a></li>
-                                                                        <li class="byDeviceDropdown" data-value="7"><a href="javascript:void(0);"><span>7 Days</span></a></li>
-                                                                        <li class="byDeviceDropdown" data-value="30"><a href="javascript:void(0);"><span>30 Days</span></a></li>
+                                                                        <li class="byDeviceDropdown" data-value="1"><a href="{{url('profile/dashboard/'. $id . '/?type=byDeviceDropdown&value=1')}}"><span>1 Day</span></a></li>
+                                                                        <li class="byDeviceDropdown" data-value="7"><a href="{{url('profile/dashboard/'. $id . '/?type=byDeviceDropdown&value=7')}}"><span>7 Days</span></a></li>
+                                                                        <li class="byDeviceDropdown" data-value="30"><a href="{{url('profile/dashboard/'. $id . '/?type=byDeviceDropdown&value=30')}}"><span>30 Days</span></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -399,12 +446,24 @@
                                                         </div>
                                                         <div class="card-tools">
                                                             <div class="drodown">
-                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">1 Day</a>
+                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">
+
+                                                                    @if ( ($type !== 'none' && $type == 'byConutryDropdown' && $value == "1") || $type == 'none' || ($type !== 'none' && $type !== 'byConutryDropdown') )
+                                                                        1 Day
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'byConutryDropdown' && $value == "7")
+                                                                        7 Days
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'byConutryDropdown' && $value == "30")
+                                                                        30 Days
+                                                                    @endif
+
+                                                                </a>
                                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
                                                                     <ul class="link-list-opt no-bdr">
-                                                                        <li class="byConutryDropdown" data-value="1"><a href="javascript:void(0);"><span>1 Day</span></a></li>
-                                                                        <li class="byConutryDropdown" data-value="7"><a href="javascript:void(0);"><span>7 Days</span></a></li>
-                                                                        <li class="byConutryDropdown" data-value="30"><a href="javascript:void(0);"><span>30 Days</span></a></li>
+                                                                        <li class="byConutryDropdown" data-value="1"><a href="{{url('profile/dashboard/'. $id . '/?type=byConutryDropdown&value=1')}}"><span>1 Day</span></a></li>
+                                                                        <li class="byConutryDropdown" data-value="7"><a href="{{url('profile/dashboard/'. $id . '/?type=byConutryDropdown&value=7')}}"><span>7 Days</span></a></li>
+                                                                        <li class="byConutryDropdown" data-value="30"><a href="{{url('profile/dashboard/'. $id . '/?type=byConutryDropdown&value=30')}}"><span>30 Days</span></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -435,12 +494,24 @@
                                                         </div>
                                                         <div class="card-tools">
                                                             <div class="drodown">
-                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">1 Day</a>
+                                                                <a href="javascript:void(0);" class="dropdownSelect dropdown-toggle dropdown-indicator btn btn-sm btn-outline-light btn-white" data-toggle="dropdown">
+
+                                                                    @if ( ($type !== 'none' && $type == 'sourceDropdown' && $value == "1") || $type == 'none' || ($type !== 'none' && $type !== 'sourceDropdown') )
+                                                                        1 Day
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'sourceDropdown' && $value == "7")
+                                                                        7 Days
+                                                                    @endif
+                                                                    @if ($type !== 'none' && $type == 'sourceDropdown' && $value == "30")
+                                                                        30 Days
+                                                                    @endif
+
+                                                                </a>
                                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-xs">
                                                                     <ul class="link-list-opt no-bdr">
-                                                                        <li class="sourceDropdown" data-value="1"><a href="javascript:void(0);"><span>1 Day</span></a></li>
-                                                                        <li class="sourceDropdown" data-value="7"><a href="javascript:void(0);"><span>7 Days</span></a></li>
-                                                                        <li class="sourceDropdown" data-value="30"><a href="javascript:void(0);"><span>30 Days</span></a></li>
+                                                                        <li class="sourceDropdown" data-value="1"><a href="{{url('profile/dashboard/'. $id . '/?type=sourceDropdown&value=1')}}"><span>1 Day</span></a></li>
+                                                                        <li class="sourceDropdown" data-value="7"><a href="{{url('profile/dashboard/'. $id . '/?type=sourceDropdown&value=7')}}"><span>7 Days</span></a></li>
+                                                                        <li class="sourceDropdown" data-value="30"><a href="{{url('profile/dashboard/'. $id . '/?type=sourceDropdown&value=30')}}"><span>30 Days</span></a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -485,13 +556,14 @@
     <!-- JavaScript -->
 
     <script>
-        var chartFilePath = document.getElementById("asset").value;
-        chartFilePath1 = chartFilePath + 'dash/assets/js/bundle.js?ver=2.5.0';
-        chartFilePath2 = chartFilePath + 'dash/assets/js/scripts.js?ver=2.5.0';
-        chartFilePath3 = chartFilePath + 'dash/assets/js/charts/gd-analytics.js?ver=2.5.0';
-        chartFilePath4 = chartFilePath + 'dash/assets/js/libs/jqvmap.js?ver=2.5.0';
         
         var byDevice = '<?php echo json_encode($byDevice); ?>';
+        var trafficChannel = '<?php echo json_encode($trafficChannel); ?>';
+        var reachSummary = '<?php echo json_encode($reachSummary); ?>';
+        var marketingPerformance = '<?php echo json_encode($marketingPerformance); ?>';
+        var marketingOverview = '<?php echo json_encode($marketingOverview); ?>';
+        var byConutry = '<?php echo json_encode($byConutry); ?>';
+
     </script>
 
 
@@ -501,111 +573,7 @@
     <script src="{{asset('dash/assets/js/libs/jqvmap.js?ver=2.5.0')}}"></script>
 
 
-    
-    
-    
-    {{-- ajax call for update data when dropdown change --}}
-    
-    <script>
-        $(document).ready(function () {
-            
-            $('.byConutryDropdown, .byDeviceDropdown, .trafficChannelDropdown, .marketingOverviewDropdown, .sourceDropdown').click(function(){
-                var profileId = $('#profileId').val();
-                var type = $(this).attr("class");
-                var value = $(this).attr('data-value');
-                var dropdownSelect = (value == '1') ? "1 Day" : ((value == '7') ? "7 Days" : "30 Days");
-                $(this).parents('.card').find('.dropdownSelect').text(dropdownSelect);
-                $('#currentType').val(type);
 
-                
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    type:'POST',
-                    url:"{{ route('ajaxRecord') }}",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        'type': type,
-                        'value': value,
-                        'profileId': profileId
-                    },
-                    success:function(data){
-                        
-                        
-                        if ($('#currentType').val() == 'byConutryDropdown') {
-                            $('#byConutryAjaxResult').empty();
-                            $.each(data, function(index, value) {
-                                $('#byConutryAjaxResult').append('<tr class="analytics-map-data"><td class="country">' + value.country + '</td><td class="amount">' + value.total + '</td><td class="percent">' + value.percentage + '%' + '</td></tr>');
-                            });
-                        }
-
-                        if ($('#currentType').val() == 'byDeviceDropdown') {
-                            // $("#loadByDevice").load(" #loadByDevice > *");
-                            // $(".nk-app-root").load(" .nk-app-root > *");
-                            $('#byDeviceDesktopAjaxResult').find('div.amount').text(data.byDeviceDesktop + '%');
-                            $('#byDeviceDesktopAjaxResult').find('div.change > span').text(data.byDeviceDesktopPercentage + '%');
-                            
-                            $('#byDeviceMobileAjaxResult').find('div.amount').text(data.byDeviceMobile + '%');
-                            $('#byDeviceMobileAjaxResult').find('div.change > span').text(data.byDeviceMobilePercentage + '%');
-                            
-                            $('#byDeviceTabletAjaxResult').find('div.amount').text(data.byDeviceTablet + '%');
-                            $('#byDeviceTabletAjaxResult').find('div.change > span').text(data.byDeviceTabletPercentage + '%');
-                            byDevice = JSON.stringify(data);
-                            $.getScript(chartFilePath1);
-                            $.getScript(chartFilePath2);
-                            $.getScript(chartFilePath3);
-                            $.getScript(chartFilePath4);
-                            // console.log(byDevice);
-
-                        }
-
-                        if ($('#currentType').val() == 'trafficChannelDropdown') {
-                            // console.log(data);
-                            $('#trafficChannelGoogle').text(data.google);
-                            $('#trafficChannelGoogleVs').text(data.googleVs);
-                            $('#trafficChannelGooglePercentage').text(data.googlePercentage);
-                            $('#trafficChannelFacebook').text(data.facebook);
-                            $('#trafficChannelFacebookVs').text(data.facebookVs);
-                            $('#trafficChannelFacebookPercentage').text(data.facebookPercentage);
-                            $('#trafficChannelAdf').text(data.adf);
-                            $('#trafficChannelAdfVs').text(data.adfVs);
-                            $('#trafficChannelAdfPercentage').text(data.adfPercentage);
-                            $('#trafficChannelOthers').text(data.others);
-                            $('#trafficChannelOthersVs').text(data.othersVs);
-                            $('#trafficChannelOthersPercentage').text(data.othersPercentage);
-                        }
-
-                        if ($('#currentType').val() == 'marketingOverviewDropdown') {
-                            console.log(data);
-                            $('#marketingOverviewImpressions').text(data.impressions);
-                            $('#marketingOverviewImpressionsB').text(data.impressionsPercentage);
-                            $('#marketingOverviewReach').text(data.reach);
-                            $('#marketingOverviewReachB').text(data.reachPercentage);
-                            $('#marketingOverviewEngagement').text(data.engagement);
-                            $('#marketingOverviewEngagementB').text(data.engagementPercentage);
-                            $('#marketingOverviewDuration').text(data.duration);
-                            $('#marketingOverviewDurationB').text(data.durationPercentage);
-                        }
-
-                        if ($('#currentType').val() == 'sourceDropdown') {
-                            console.log('in source');
-                            $('.single-source').remove();
-                            $.each(data, function(index, value) {
-                                $('#sourceAjaxResult').append('<div class="single-source nk-tb-item"><div class="nk-tb-col"><span class="tb-sub"><span>' + value.referral + '</span></span></div><div class="nk-tb-col text-right"><span class="tb-sub tb-amount"><span>' + value.total + '</span></span></div>');
-                            });
-                        }
-                        
-                        
-                    }
-                    
-                });
-                
-            })
-        });
-    </script>
     
 </body>
 
